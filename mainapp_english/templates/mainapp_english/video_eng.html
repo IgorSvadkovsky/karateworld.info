@@ -1,0 +1,38 @@
+{% extends 'mainapp_english/basic_templates/base_gallery_eng.html'%}
+{% load staticfiles %}
+
+{% block title %}
+   <title>Karate world: Videos</title>
+{% endblock %}
+
+{% block content %}
+   
+   
+   
+    <div class="title_article_i gallery_title" style="margin-bottom: 10px;">Videos</div>
+    
+    <div class="container d-flex flex-row justify-content-center flex-wrap">
+        
+        {% for item in video_item %}
+        
+            <a href="{% url 'main:video_id' item.pk%}" class="video_item_link"><div class="card text-white mb-3 video_item" style="max-width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title text-center">{{item.title_eng}}</h5>
+                </div>
+            </div></a>
+            
+        {% endfor %}
+    
+    </div>
+    
+    {% if number_of_videos > 30 %}
+    
+        <div style="text-align: center; margin-top: 10px;">
+    
+            <a href="{% url 'show_video_eng'%}" target="_blank"><button type="button" class="btn btn-dark">Show the rest videos</button></a>
+        
+        </div>
+    
+    {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'mainapp_english/basic_templates/base_gallery_eng.html'%}
+{% load staticfiles %}
+
+{% block title %}
+   <title>Karate world: {{ video.title_eng }}</title>
+{% endblock %}
+
+{% block content %}
+  
+    <div class="article_date" style="color: #fff;">
+        {{ video.date }}
+    </div>
+  
+    <div class="title_article_i gallery_title">{{ video.title_eng }}</div>
+
+    <div class="additional_text" style="color: #fff">
+        {{video.description_eng|safe}}
+    </div>
+    
+    {% if video.video %}
+    <video src="{{video.video.url}}" type="video" autoplay="autoplay" controls="controls" width="100%" style="box-shadow: 0 0 15px #b38e15; margin-top: 10px; max-width: 1400px; border-radius: 5px;">
+    </video>
+    
+    {% else %}
+        <div class="youtube_embedded" style="box-shadow: 0 0 15px #b38e15; margin-top: 10px; max-width: 1400px; border-radius: 5px;">
+            {{video.youtube_video|safe}}
+        </div>
+    {% endif %}
+    
+    
+    <div class="additional_text" style="color: #fff">
+        {{video.additional_text_eng|safe}}
+    </div>
+    
+        <hr style="background-color:  #827d7d"> 
+
+    <div class="comment_block">
+        
+        <h3>Comments {% if comment %} &bull; {{ comment|length }}  {% endif %}</h3>
+
+        {% if user.is_authenticated %}
+            <div class="comment_form">
+               <form action="" method="post">
+                  {% csrf_token %}
+                  
+                  {% for field in comment_form %}
+                      <!--<div class="comment_field">-->
+                          {{field}}
+                      <!--</div>-->
+                  {% endfor %}
+
+                <div class="comment_buttons">
+                                        
+                  <input type="submit" value="Send">
+                  <input type="reset" value="Clear">
+                
+                </div>
+
+               </form>
+            </div>
+        {% else %}
+            <p class="auth_notification">To leave a comment, please, <a href="{% url 'auth:login_eng' %}">log in</a> or <a href="{% url 'auth:register_eng' %}">register</a>.</p>
+        {% endif %}
+        
+        <div class="comments">
+            {% for comm in comment %}
+                <div class="comment_item">
+                    
+                    <div class="comment_avatar">
+                        {% if comm.avatar %}<img src="{{ comm.avatar }}">{% else %}<img src="/static/images/anonimus.png"/>{% endif %}
+                    </div>
+                    
+                    <div class="author_date_comment">
+                        
+                        <div class="author_date">
+                            <div class="comment_author">
+                                {{comm.author_id}}
+                            </div>
+                            <div class="comment_date">
+                                {{comm.date}}
+                            </div>
+                        </div>
+                        
+                        <div class="comment_comment">
+                            {{comm.comment}}
+                        </div>
+                         
+                    </div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    
+{% endblock %}

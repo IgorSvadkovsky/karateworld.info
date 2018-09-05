@@ -1,0 +1,83 @@
+{% extends 'mainapp_english/basic_templates/base_no_logo_eng.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Photo albums: Search results</title>
+{% endblock %}
+          
+{% block content %}
+    <div>  
+    <h3>Search results: {{ found_articles.count|add:found_editors.count|add:found_albums.count|add:found_videos.count }}</h3>
+    
+    {% if found_articles %}<h5 align="center" style="margin-top: 10px; color: #b3051c;">Main page articles</h5>{% endif %}
+    
+    <div class="search_container">
+        {% for article in found_articles %}
+            <a class="search_title_text" href="{{ article.get_absolute_url_eng }}" target="_blank">
+
+                <div class="search_date">
+                    {{ article.date }}
+                </div>
+                <div class="search_title">
+                    {{ article.title_eng }}
+                </div>
+
+            </a>
+        {% endfor %}
+    </div>
+    
+    {% if found_editors %}<h5 align="center" style="margin-top: 10px; color: #b3051c;">Editor in chief's articles</h5>{% endif %}
+    
+    <div class="search_container">
+        {% for editor in found_editors %}
+            <a class="search_title_text" href="{{ editor.get_absolute_url }}" target="_blank">
+
+                <div class="search_date">
+                    {{ editor.date }}
+                </div>
+                <div class="search_title">
+                    {{ editor.title }}
+                </div>
+
+            </a>
+        {% endfor %}
+    </div>
+    
+    {% if found_albums %}<h5 align="center" style="margin-top: 10px; color: #b3051c;">Photo albums</h5>{% endif %}
+    
+    <div class="search_container">
+        {% for album in found_albums %}
+            <a class="search_title_text" href="{{ album.get_absolute_url_eng }}" target="_blank">
+
+                <div class="search_date">
+                    {{ album.date }}
+                </div>
+                <div class="search_title">
+                    {{ album.title_eng }}
+                </div>
+
+            </a>
+        {% endfor %}
+    </div>
+    
+    {% if found_videos %}<h5 align="center" style="margin-top: 10px; color: #b3051c;">Videos</h5>{% endif %}
+    
+    <div class="search_container">
+        {% for video in found_videos %}
+            <a class="search_title_text" href="{{ video.get_absolute_url_eng }}" target="_blank">
+
+                <div class="search_date">
+                    {{ video.date }}
+                </div>
+                <div class="search_title">
+                    {{ video.title_eng }}
+                </div>
+
+            </a>
+        {% endfor %}
+    </div>
+    
+    </div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'mainapp/basic_templates/base.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир каратэ: Регистрация</title>
+{% endblock %}
+          
+{% block content %}
+
+    <form class="login_form" action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
+        
+        <div class="form_title">
+            Регистрация
+        </div>
+
+        {% csrf_token %}
+        {{ register_form.as_p }}
+        <br>
+        <input class="form_control" type="submit" value="Зарегистрироваться" style="border: 2px solid #9dc8eb;">
+
+    </form>
+    
+    <div class="helptext_russian">
+        <b>Вспомогательный текст:</b><br><br>
+        Username - имя пользователя - обязательное поле; до 150 символов; допустимы только буквы, цифры и символы @/./+/-/_<br><br>
+        Password - <span style="color: darkred; font-weight: bold">пароль не может быть слишком похож на Вашу остальную персональную информацию (в частности, на имя пользователя/логин)</span>; должен содержать как минимум 8 символов; не может быть одним из широко используемых паролей; не может состоять целиком из цифр.<br><br>
+        Password confirmation - введите пароль еще раз для подтверждения.<br><br>
+        Email address - адрес электронной почты (необязательное поле).<br><br>
+        Avatar - изображение профиля (загрузите графический файл с изображением/картинкой, необязательное поле).
+    </div>
+
+{% endblock %}

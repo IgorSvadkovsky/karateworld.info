@@ -1,0 +1,32 @@
+{% extends 'mainapp_english/basic_templates/base_eng.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Karate World: Authorization</title>
+{% endblock %}
+          
+{% block content %}
+
+    <form class="login_form" action="{% url 'auth:login_eng' %}" method="post">
+        
+        <div class="form_title">
+            Authorization
+        </div>
+
+        {% csrf_token %}
+        {{ login_form.as_p }}
+
+        <br>
+
+        <input class="form_control" type="submit" value="Sign in" style="border: 2px solid #9dc8eb;">
+
+        <br>
+
+    </form>
+
+    <a style="text-decoration: none" href="{% url 'auth:register_eng' %}">
+       <button class="form_control button-form_control">Sign up</button>
+    </a>
+
+{% endblock %}

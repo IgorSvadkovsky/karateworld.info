@@ -1,0 +1,27 @@
+{% extends 'mainapp/basic_templates/base.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир каратэ: Редактирование профиля</title>
+{% endblock %}
+          
+{% block content %}
+
+    <form class="login_form" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
+        
+        <div class="form_title">
+            Редактирование профиля
+        </div>
+
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        <br>
+        <div class="user_avatar"><img src="/media/{{ user.avatar }}"></div>
+        <input class="form_control" type="submit" value="Сохранить" style="border: 2px solid #9dc8eb;">
+
+    </form>
+
+    
+
+{% endblock %}

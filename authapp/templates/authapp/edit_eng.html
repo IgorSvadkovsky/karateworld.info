@@ -1,0 +1,27 @@
+{% extends 'mainapp_english/basic_templates/base_eng.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Karate World: Edit profile</title>
+{% endblock %}
+          
+{% block content %}
+
+    <form class="login_form" action="{% url 'auth:edit_eng' %}" method="post" enctype="multipart/form-data">
+        
+        <div class="form_title">
+            Edit profile
+        </div>
+
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        <br>
+        <div class="user_avatar"><img src="/media/{{ user.avatar }}"></div>
+        <input class="form_control" type="submit" value="Save" style="border: 2px solid #9dc8eb;">
+
+    </form>
+
+    
+
+{% endblock %}

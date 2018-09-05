@@ -1,0 +1,108 @@
+{% extends 'mainapp/basic_templates/base_no_logo.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир каратэ: результаты поиска</title>
+{% endblock %}
+
+{% block menu_main_page %}
+    <a href="{% url 'articles:main' %}"><div class="menu_main_page">На главную</div></a>
+{% endblock %}
+
+          
+{% block content %}
+    <div>  
+    <h3>Результаты поиска: {{ found_articles.count|add:found_editors.count|add:found_nonfiction.count|add:found_albums.count|add:found_videos.count }}</h3>
+    
+    {% if found_articles %}<h5 align="center" style="margin-top: 10px; color: #b3051c;">Статьи на главной</h5>{% endif %}
+    
+    <div class="search_container">
+        {% for article in found_articles %}
+            <a class="search_title_text" href="{{ article.get_absolute_url }}" target="_blank">
+
+                <div class="search_date">
+                    {{ article.date }}
+                </div>
+                <div class="search_title">
+                    {{ article.title }}
+                </div>
+                <!--<div class="search_text">
+                    <i>{{ article.text|truncatewords:15 }}</i>
+                </div>-->
+
+            </a>
+        {% endfor %}
+    </div>
+    
+    {% if found_editors %}<h5 align="center" style="margin-top: 10px; color: #b3051c;">Статьи главного редактора</h5>{% endif %}
+    
+    <div class="search_container">
+        {% for editor in found_editors %}
+            <a class="search_title_text" href="{{ editor.get_absolute_url }}" target="_blank">
+
+                <div class="search_date">
+                    {{ editor.date }}
+                </div>
+                <div class="search_title">
+                    {{ editor.title }}
+                </div>
+
+            </a>
+        {% endfor %}
+    </div>
+    
+    {% if found_nonfiction %}<h5 align="center" style="margin-top: 10px; color: #b3051c;">Публицистика</h5>{% endif %}
+    
+    <div class="search_container">
+        {% for editor in found_nonfiction %}
+            <a class="search_title_text" href="{{ editor.get_absolute_url }}" target="_blank">
+
+                <div class="search_date">
+                    {{ editor.date }}
+                </div>
+                <div class="search_title">
+                    {{ editor.title }}
+                </div>
+
+            </a>
+        {% endfor %}
+    </div>
+    
+    {% if found_albums %}<h5 align="center" style="margin-top: 10px; color: #b3051c;">Фотоальбомы</h5>{% endif %}
+    
+    <div class="search_container">
+        {% for album in found_albums %}
+            <a class="search_title_text" href="{{ album.get_absolute_url }}" target="_blank">
+
+                <div class="search_date">
+                    {{ album.date }}
+                </div>
+                <div class="search_title">
+                    {{ album.title_rus }}
+                </div>
+
+            </a>
+        {% endfor %}
+    </div>
+    
+    {% if found_videos %}<h5 align="center" style="margin-top: 10px; color: #b3051c;">Видео</h5>{% endif %}
+    
+    <div class="search_container">
+        {% for video in found_videos %}
+            <a class="search_title_text" href="{{ video.get_absolute_url }}" target="_blank">
+
+                <div class="search_date">
+                    {{ video.date }}
+                </div>
+                <div class="search_title">
+                    {{ video.title_rus }}
+                </div>
+
+            </a>
+        {% endfor %}
+    </div>
+    
+    </div>
+
+{% endblock %}

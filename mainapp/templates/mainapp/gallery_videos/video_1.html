@@ -1,0 +1,96 @@
+{% extends 'mainapp/basic_templates/base_gallery.html'%}
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир каратэ: {{ video.title_rus }}</title>
+{% endblock %}
+
+{% block content %}
+  
+    <div class="article_date" style="color: #fff;">
+        {{ video.date }}
+    </div>
+  
+    <div class="title_article_i gallery_title">{{ video.title_rus }}</div>
+
+    <div class="additional_text" style="color: #fff">
+        {{video.description_rus|safe}}
+    </div>
+    
+    {% if video.video %}
+    <video src="{{video.video.url}}" type="video" autoplay="autoplay" controls="controls" width="100%" style="box-shadow: 0 0 15px #b38e15; margin-top: 10px; max-width: 1400px; border-radius: 5px;">
+    </video>
+    
+    {% else %}
+        <div class="youtube_embedded" style="box-shadow: 0 0 15px #b38e15; margin-top: 10px; max-width: 1400px; border-radius: 5px;">
+            {{video.youtube_video|safe}}
+        </div>
+    {% endif %}
+    
+    
+    <div class="additional_text" style="color: #fff">
+        {{video.additional_text_rus|safe}}
+    </div>
+    
+        <hr style="background-color:  #827d7d"> 
+
+    <div class="comment_block">
+        
+        <h3>Комментарии {% if comment %} &bull; {{ comment|length }}  {% endif %}</h3>
+
+        {% if user.is_authenticated %}
+            <div class="comment_form">
+               <form action="" method="post">
+                  {% csrf_token %}
+                  
+                  {% for field in comment_form %}
+                      <!--<div class="comment_field">-->
+                          {{field}}
+                      <!--</div>-->
+                  {% endfor %}
+
+                <div class="comment_buttons">
+                                        
+                  <input type="submit" value="Отправить">
+                  <input type="reset" value="Очистить">
+                
+                </div>
+
+               </form>
+            </div>
+        {% else %}
+            <p class="auth_notification">Чтобы оставить комментарий, пожалуйста, <a href="{% url 'auth:login' %}">авторизуйтесь</a> или <a href="{% url 'auth:register' %}">зарегистрируйтесь</a>.</p>
+        {% endif %}
+        
+        <div class="comments">
+            {% for comm in comment %}
+                <div class="comment_item">
+                    
+                    <div class="comment_avatar">
+                        {% if comm.avatar %}<img src="{{ comm.avatar }}">{% else %}<img src="/static/images/anonimus.png"/>{% endif %}
+                    </div>
+                    
+                    <div class="author_date_comment">
+                        
+                        <div class="author_date">
+                            <div class="comment_author">
+                                {{comm.author_id}}
+                            </div>
+                            <div class="comment_date">
+                                {{comm.date}}
+                            </div>
+                        </div>
+                        
+                        <div class="comment_comment">
+                            {{comm.comment}}
+                        </div>
+                         
+                    </div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    
+{% endblock %}

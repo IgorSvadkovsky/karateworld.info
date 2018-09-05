@@ -1,0 +1,65 @@
+{% extends 'mainapp/basic_templates/base.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир каратэ: Стили - Каратэ Вадо Рю</title>
+{% endblock %}
+
+{% block menu_main_page %}
+    <a href="{% url 'articles:main' %}"><div class="menu_main_page">На главную</div></a>
+{% endblock %}
+
+          
+{% block content %}
+    
+    <h2 align=center style="color: #991131"><b>Каратэ Вадо Рю</b></h2>
+     
+    <div style="text-align: justify">
+    
+        <div style="float: left"><img align="center" src="{% static 'images/wado_logo.png' %}"></div>
+        <p style="text-indent: 1em">Каратэ Wado-Ryu (Wado-Kai) было основано Otsuka Hironori и является одним из четырех главных стилей японского каратэ. Hironori использовал свои знания Shotokan каратэ, джиу-джитсу, захватов и Tai Sabaki (Движения Тела), чтобы сформировать свой собственный стиль.</p>
+
+        <p style="text-indent: 1em">Каратэ Wado-Ryu не практикует многие жесткие движения, характерные для других стилей каратэ, предпочитая скорее использовать Tai Sabaki, чтобы уклониться от нападений.</p>
+
+        <p style="text-indent: 1em">Происхождение: Япония</p>
+
+        <p style="text-indent: 1em">Основатель: Otsuka Hironori в 1934 году.</p>
+
+        <p style="text-indent: 1em">У Wado-Ryu совсем немного поклонников, в России этим стилем занимаются единицы, а во всем мире вряд ли более чем несколько сотен спортсменов.</p>
+
+        <p style="text-indent: 1em">Стиль Wado-Ryu практикуют:</p>
+
+        <h6 align='center'><b>Международные федерации категории А</b></h6>
+        
+        <ul style="list-style-type: none">
+        
+            <li>World Karate Federation (WKF) (условно)</li>
+
+            <li>World Karate Confederation (WKC)</li>
+            
+            <br>
+
+            <li><p><i>Примечание. У представителей стиля Wado-Ryu на соревнованиях WKF те же проблемы, что и у стиля Goju-Ryu.</i></p>
+
+                <p><i>В WKC соревнования по ката всех четырех стилей проводятся отдельно по каждому стилю.</i></p></li>
+        
+        </ul>
+
+        <h6 align='center'><b>Международные федерации категории B</b></h6>
+        
+        <ul style="list-style-type: none">
+
+            <li>World Union of Karate-do Federations (WUKF)</li>
+
+            <li>World Union of Karate-do Organizations (WUKO)</li>
+
+            <li>Japan Karatedo Federation Wado-Kai (JKFWK)</li>
+        
+        </ul>
+
+        <span style="font-size: 12px;"><i>При подготовке использованы материалы Википедии, иностранные источники и собственная информация.</i></span>
+    
+    </div>  
+
+{% endblock %}

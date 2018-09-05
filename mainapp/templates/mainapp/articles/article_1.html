@@ -1,0 +1,186 @@
+{% extends 'mainapp/basic_templates/base.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир Каратэ: {{article.title}}</title>
+{% endblock %}
+          
+{% block content %}
+      
+    <div class="container_article_i">
+        
+        <div class="article_date">
+            {{article.date}}
+        </div>
+
+        <div class="title_article_i">{{article.title}}</div>
+
+        <div class="date_article_i">{% if article.date_start %}{{article.date_start}}{% endif %} {% if article.date_end %}&mdash; {{article.date_end}}{% endif %}</div>
+        
+        {% if article.image_poster_logo_upper %}
+            <div class="image_upper_article_i">
+                <div>
+                    <img src="{{article.image_poster_logo_upper.url}}">
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="flex_container_1">
+
+            <div class="image_left_article_i"><div>{% if article.image_poster_logo %}<img align="center" src="{{article.image_poster_logo.url}}">{% endif %}</div></div>
+
+
+            <div class="flex_text">
+
+                <div {% if article.type.id != 2 and article.type.id != 4 %} class="text_article_i" {% else %} class="city_description_article_i" style="font-size: 20px" {% endif %} align="justify"><div>{{article.text|safe}}</div></div>
+
+                <div class="files_article_i" >
+
+                    {% if article.file1 %}
+                        <a href="{{article.file1.url}}" target="_blank" style="text-decoration: none"><div class="files_item">{{article.file1_name}}</div></a>
+                    {% endif %}
+
+                    {% if article.file2 %}
+                        <a href="{{article.file2.url}}" target="_blank" style="text-decoration: none"><div class="files_item">{{article.file2_name}}</div></a>
+                    {% endif %}
+                    
+                    {% if article.file3 %}
+                        <a href="{{article.file3.url}}" target="_blank" style="text-decoration: none"><div class="files_item">{{article.file3_name}}</div></a>
+                    {% endif %}
+                    
+                    {% if article.file4 %}
+                        <a href="{{article.file4.url}}" target="_blank" style="text-decoration: none"><div class="files_item">{{article.file4_name}}</div></a>
+                    {% endif %}
+                    
+                    {% if article.file5 %}
+                        <a href="{{article.file5.url}}" target="_blank" style="text-decoration: none"><div class="files_item">{{article.file5_name}}</div></a>
+                    {% endif %}
+
+                </div>
+
+                <div class="other_images_article_i">
+
+
+                    {% if article.image1 %}
+                        <div>
+                            <img src="{{ article.image1.url }}">
+                        </div>
+                    {% endif %}
+
+                    {% if article.image2 %}
+                        <div>
+                            <img src="{{ article.image2.url }}">
+                        </div>
+                    {% endif %}
+
+                    {% if article.image3 %}
+                        <div>
+                            <img src="{{ article.image3.url }}">
+                        </div>
+                    {% endif %}
+
+                    {% if article.image4 %}
+                        <div>
+                            <img src="{{ article.image4.url }}">
+                        </div>
+                    {% endif %}
+
+                    {% if article.image5 %}
+                        <div>
+                            <img src="{{ article.image5.url }}">
+                        </div>
+                    {% endif %}
+
+                    {% if article.image6 %}
+                        <div>
+                            <img src="{{ article.image6.url }}">
+                        </div>
+                    {% endif %}
+
+                </div>
+
+                <div class="city_description_article_i" align="justify">{{article.city_description|safe}}</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="city_photo_article_i">
+            <div>
+                {% if article.image_city_1 %}<img src="{{article.image_city_1.url}}">{% endif %}
+            </div>
+            <div>
+                {% if article.image_city_2 %}<img src="{{article.image_city_2.url}}">{% endif %}
+            </div>
+        </div>
+        
+        <div class="additional_text">
+            {% if article.additional_text %}{{article.additional_text|safe}}{% endif %}
+        </div>
+
+    </div>
+          
+    <hr> 
+
+    <div class="comment_block">
+        
+        <h3>Комментарии {% if comment %} &bull; {{ comment|length }}  {% endif %}</h3>
+
+        {% if user.is_authenticated %}
+            <div class="comment_form">
+               <form action="" method="post">
+                  {% csrf_token %}
+                  
+                  {% for field in comment_form %}
+                      <!--<div class="comment_field">-->
+                          {{field}}
+                      <!--</div>-->
+                  {% endfor %}
+
+                <div class="comment_buttons">
+                                        
+                  <input type="submit" value="Отправить">
+                  <input type="reset" value="Очистить">
+                
+                </div>
+
+               </form>
+            </div>
+        {% else %}
+            <p class="auth_notification">Чтобы оставить комментарий, пожалуйста, <a href="{% url 'auth:login' %}">авторизуйтесь</a> или <a href="{% url 'auth:register' %}">зарегистрируйтесь</a>.</p>
+        {% endif %}
+        
+        <div class="comments">
+            {% for comm in comment %}
+                <div class="comment_item">
+                    
+                    <div class="comment_avatar">
+                        {% if comm.avatar %}<img src="{{ comm.avatar }}">{% else %}<img src="/static/images/anonimus.png"/>{% endif %}
+                    </div>
+                    
+                    <div class="author_date_comment">
+                        
+                        <div class="author_date">
+                            <div class="comment_author">
+                                {{comm.author_id}}
+                            </div>
+                            <div class="comment_date">
+                                {{comm.date}}
+                            </div>
+                        </div>
+                        
+                        <div class="comment_comment">
+                            {{comm.comment}}
+                        </div>
+                         
+                    </div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}

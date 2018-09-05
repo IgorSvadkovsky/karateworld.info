@@ -1,0 +1,59 @@
+{% extends 'mainapp/basic_templates/base.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир каратэ: Стили - Каратэ Сито Рю</title>
+{% endblock %}
+
+{% block menu_main_page %}
+    <a href="{% url 'articles:main' %}"><div class="menu_main_page">На главную</div></a>
+{% endblock %}
+
+          
+{% block content %}
+    
+    <h2 align=center style="color: #991131"><b>Каратэ Сито Рю</b></h2>
+     
+    <div style="text-align: justify">
+    
+        <div style="float: left"><img align="center" src="{% static 'images/shito_logo.png' %}"></div>
+        <p style="text-indent: 1em">Каратэ Shito-Ryu было основано Kenwa Mabuni (1890-1954), мастером каратэ с Окинавы, который изучал два стиля: Naha-Te (который преобразовался в каратэ Gojuryu) и Shuri-Te (который преобразовался в Shorinryu). Shito Ryu было сформировано из комбинаций ката и техники этих двух стилей. </p>
+
+        <p style="text-indent: 1em">Kenwa Mabuni объединил японские слоги имен своих двух главных учителей: Ankoh Itosu (Сури-Те) и Kanryo Higaonna (Наха-Te), чтобы отдать им честь, когда он создал свой собственный стиль, Shito-Ryu, который он начал преподавать, переехав в Осаку, Япония.</p>
+
+        <p style="text-indent: 1em">Сито Рю занимает промежуточное положение между такими основными стилями, как Сётокан и Годзю Рю. Сётокан, происходящий от Сёрин Рю (Сюри-тэ), использует длинные линейные стойки и физическую силу. Годзю Рю, происходящее от Сёрэй Рю (Наха-тэ и Томари-тэ), использует высокие и низкие стойки и силу внутреннего дыхания (жёсткая и мягкая техника). Сито Рю заимствовало принципы как Сёрин Рю, так и Сёрэй Рю. Стиль Сито Рю, несмотря на быстроту, полон силы и эстетики. Он включает в себя мощные ката Сюри-тэ (Найфантин, Бассай), жёсткие и мягкие ката Наха-тэ (Сантин, Сэйнтин) и артистичные ката китайского стиля «Белого журавля» (Нипайпо, Пайпурен).</p>
+
+        <p style="text-indent: 1em">По данным WK стилем Shito-Ryu занимаются примерно 15% всех каратэков.</p>
+
+        <p style="text-indent: 1em">Стиль Shito-Ryu практикуют:</p>
+
+        <h6 align='center'><b>Международные федерации категории А</b></h6>
+        
+        <ul style="list-style-type: none">
+        
+            <li>World Karate Federation (WKF)</li>
+
+            <li>World Karate Confederation (WKC)</li>
+        
+        </ul>
+
+        <h6 align='center'><b>Международные федерации категории B</b></h6>
+        
+        <ul style="list-style-type: none">
+
+            <li>World Union of Karate-do Federations (WUKF)</li>
+
+            <li>World Union of Karate-do Organizations (WUKO)</li>
+
+            <li>World Shito-ryu Karate-do Federation (W.S.K.F)</li>
+
+            <li>Kobe Osaka International (KOI)</li>
+        
+        </ul>
+
+        <span style="font-size: 12px;"><i>При подготовке использованы материалы Википедии, иностранные источники и собственная информация.</i></span>
+    
+    </div>  
+
+{% endblock %}

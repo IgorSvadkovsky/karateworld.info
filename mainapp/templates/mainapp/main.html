@@ -1,0 +1,162 @@
+{% extends 'mainapp/basic_templates/base.html'%}
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир Каратэ</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="menu_articles">
+
+        {% for type in types %}
+            <a href="{% url 'articles:type' type.pk %}">
+                <div class="item_menu_articles" {% if type.type_rus == 'Спортивные лагеря' %} style="display: none" {% endif %}>
+                    {{ type.type_rus }}
+                </div> 
+            </a>
+        {% endfor %}
+        
+        <a href="{% url 'articles:type' 'nonfiction' %}">
+            <div class="item_menu_articles">
+                Публицистика
+            </div> 
+        </a>
+
+        <!-- <a href="{% url 'articles:type' 0 %}">
+            <div class="item_menu_articles">
+                Все статьи
+            </div> 
+        </a> -->
+
+    </div>
+    
+    {% if countries %}
+        <!--<div class="select_country">-->
+            <div class="dropdown">
+                <a class="select_country dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Выбрать страну
+                </a>
+                
+                <!--a class="btn btn-secondary dropdown-toggle"-->
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    {% for country in countries %}
+                        {% if country.name_rus == 'Россия' %}
+                            <a class="dropdown-item dropdown-item_russia" href="{% url 'articles:country' 1 country.id %}">
+                                {{ country.name_rus }}
+                            </a>
+                        {% else %}
+                            <a class="dropdown-item" href="{% url 'articles:country' 1 country.id %}">
+                                {{ country.name_rus }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        <!--</div>-->
+    {% endif %}
+
+    <div class="menu_countries">
+
+        {% for country in countries %}
+            {% if country.name_rus == 'Россия' %}
+                <a href="{% url 'articles:country' 1 country.id %}">
+                    <div class="item_menu_countries_russia">
+                        {{ country.name_rus }}
+                    </div>
+                </a>
+            {% else %}
+                <a href="{% url 'articles:country' 1 country.id %}">
+                    <div class="item_menu_countries">
+                        {{ country.name_rus }}
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+    
+    <div class="container_articles">
+        
+        {% if main_page_article %}
+       
+            <a {% if main_page_article.editor %} href="{{main_page_article.editor.get_absolute_url}}" {% elif main_page_article.nonfiction %} href="{{main_page_article.nonfiction.get_absolute_url}}" {% elif main_page_article.album %} href="{{main_page_article.album.get_absolute_url}}" {% elif main_page_article.video %} href="{{main_page_article.video.get_absolute_url}}" {%endif%} target="_blank" style="text-decoration: none">
+
+                <div class="item_articles">
+
+                    <img {% if main_page_article.editor %} src="{% static 'images/plume.jpg' %}" {% elif main_page_article.nonfiction %} src="{% static 'images/book.jpg' %}" {% elif main_page_article.album %} src="{{main_page_article.album.image1.url}}" {% elif main_page_article.video %} src="{% static 'images/video.jpg' %}" {%endif%}>
+
+                    <div class="item_articles_title">
+                        <div class="item_articles_title_inner"> {% if main_page_article.editor %} {{main_page_article.editor.title}} {% elif main_page_article.nonfiction %} {{main_page_article.nonfiction.title}}  {% elif main_page_article.album %} {{main_page_article.album.title_rus}} {% elif main_page_article.video %} {{main_page_article.video.title_rus}} {%endif%} </div>
+                    </div>
+
+                </div>
+
+            </a>
+                
+        {% endif %}
+
+        {% for item in article_item %}
+
+            <a {% if show_editor %} href="{% url 'articles:editor_id' item.pk %}" {% elif show_nonfiction %} href="{% url 'articles:nonfiction' item.pk %}" {% else %} href="{% url 'articles:id' item.pk %}" {% endif %} target="_blank" style="text-decoration: none">
+
+                    <div class="item_articles">
+
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}">
+                        {% elif show_editor %}
+                            <img src="{% static 'images/plume.jpg' %}">
+                        {% elif show_nonfiction %}
+                            <img src="{% static 'images/book.jpg' %}">
+                        {% else %}
+                            <img src="{{ item.country.flag.url }}">
+                        {% endif %}
+
+                        <!--{% if item.flag %}<img src="{{ item.flag.url }}">{% endif %}-->
+
+                        <div class="item_articles_title">
+                            <div class="item_articles_title_inner">{{ item.title }}</div>
+                        </div>
+
+                    </div>
+                    
+            </a>
+
+        {% endfor %}        
+
+    </div>
+    
+    {% if number_of_articles > 100 %}
+    
+        <div style="text-align: center; margin-top: 10px;">
+    
+            {% if show_all %}
+                <a href="{% url 'show_all'%}" target="_blank"><button type="button" class="btn btn-light">{{show_all}}</button></a>
+            {% endif %}
+
+            {% if show_competitions %}
+                <a href="{% url 'show_competitions'%}" target="_blank"><button type="button" class="btn btn-light">{{show_competitions}}</button></a>
+            {% endif %}
+
+            {% if show_sport_camps %}
+                <a href="{% url 'show_sport_camps'%}" target="_blank"><button type="button" class="btn btn-light">{{show_sport_camps}}</button></a>
+            {% endif %}
+
+            {% if show_sport_science %}
+                <a href="{% url 'show_sport_science'%}" target="_blank"><button type="button" class="btn btn-light">{{show_sport_science}}</button></a>
+            {% endif %}
+
+            {% if show_editor %}
+                <a href="{% url 'show_editor'%}" target="_blank"><button type="button" class="btn btn-light">{{show_editor}}</button></a>
+            {% endif %}
+            
+            {% if show_nonfiction %}
+                <a href="{% url 'show_nonfiction'%}" target="_blank"><button type="button" class="btn btn-light">{{show_nonfiction}}</button></a>
+            {% endif %}
+        
+        </div>
+    
+    {% endif %}
+    
+{% endblock %}

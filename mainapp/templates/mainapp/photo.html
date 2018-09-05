@@ -1,0 +1,41 @@
+{% extends 'mainapp/basic_templates/base_gallery.html'%}
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир каратэ: Фотоальбомы</title>
+{% endblock %}
+
+{% block content %}
+   
+   
+   
+   <div class="title_article_i gallery_title" style="margin-bottom: 10px;">Фотоальбомы</div>
+    
+        <div class="container card-columns">
+            
+            {% for item in gallery_item %}
+               <a href="{% url 'articles:photo_id' item.pk %}"><div class="card text-white">{%if item.image1%}<img class="card-img" src="{{item.image1.url}}" alt="Card image">{%endif%}
+                <div class="card-img-overlay d-flex flex-column justify-content-between">
+                    <div class="top_block text-right">
+                        {{item.date}}
+                    </div>
+                    <div class="bottom_block">
+                        {{item.title_rus}}
+                    </div>
+                </div>
+                </div></a> 
+            {% endfor %}
+
+       </div>
+       
+    {% if number_of_albums > 30 %}
+    
+        <div style="text-align: center; margin-top: 10px;">
+    
+            <a href="{% url 'show_photo'%}" target="_blank"><button type="button" class="btn btn-dark">Показать остальные фотоальбомы</button></a>
+        
+        </div>
+    
+    {% endif %}
+    
+{% endblock %}

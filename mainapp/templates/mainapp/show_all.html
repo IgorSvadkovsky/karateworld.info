@@ -1,0 +1,32 @@
+{% extends 'mainapp/basic_templates/base_no_logo.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир каратэ: все статьи</title>
+{% endblock %}
+          
+{% block content %}
+   
+    <div>
+         
+        <h3>Все статьи: {{ articles.count }}</h3>
+
+        <div class="search_container">
+            {% for article in articles %}
+                <a class="search_title_text" href="{{ article.get_absolute_url }}" target="_blank">
+
+                    <div class="search_date">
+                        {{ article.date }}
+                    </div>
+                    <div class="search_title">
+                        {{ article.title }}
+                    </div>
+                    
+                </a>
+            {% endfor %}
+        </div>
+    
+    </div>
+
+{% endblock %}

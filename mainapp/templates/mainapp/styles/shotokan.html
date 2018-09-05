@@ -1,0 +1,75 @@
+{% extends 'mainapp/basic_templates/base.html'%}
+
+{% load staticfiles %}
+
+{% block title %}
+   <title>Мир каратэ: Стили - Каратэ Сётокан</title>
+{% endblock %}
+
+{% block menu_main_page %}
+    <a href="{% url 'articles:main' %}"><div class="menu_main_page">На главную</div></a>
+{% endblock %}
+
+          
+{% block content %}
+    
+    <h2 align=center style="color: #991131"><b>Каратэ Сётокан</b></h2>
+     
+    <div style="text-align: justify">
+    
+        <div style="float: left"><img align="center" src="{% static 'images/shotokan_logo.png' %}"></div>
+        <p style="text-indent: 1em">Каратэ Shotokan является одним из четырех главных стилей каратэ в Японии.</p>
+
+        <p style="text-indent: 1em">Shotokan (яп. сё:то:кан, буквально, «дом колышущихся сосен» или «зал сосны и моря»), один из основных стилей японского каратэ, разработанный выдающимся популяризатором и преподавателем карате Фунакоси Гитином (1868—1957) и получившим дальнейшее развитие благодаря его сыну Фунакоси Ёситака. Направление получило название «Сётокан» от литературного псевдонима Фунакоси — Сёто. На эмблеме стиля изображен тигр.</p>
+
+        <h5 align=center>Особенности стиля</h5>
+
+        <p style="text-indent: 1em">Сётокан отличается линейными перемещениями и линейным приложением силы. Стойки низкие и широкие. Блоки жёсткие. Удары руками мощные и реверсивные с включением в удар бедра. Принцип иккэн-хисацу (одним ударом — наповал) является основополагающим в Сётокан карате-до. Программа Сётокан карате-до имеет 26 различных ката – их принято называть классическими – изучение и выполнение которых является важнейшей составляющей тренинга.</p>
+
+        <p style="text-indent: 1em">Особенно серьёзное внимание уделяется: 1) выработке жёсткого баланса, общей устойчивости, что достигается длительной отработкой низких, глубоких стоек; 2) вращательным движением бедер в горизонтальной плоскости, в прямом или обратном удару направлении, что генерирует огромную разрушительную силу в ударах и блоках; 3) своевременному и мгновенному включению всех групп мышц в конечной фазе удара, когда положительное ускорение мгновенно сменяется отрицательным (если это возвратное движение) или резкой остановкой, благодаря чему возникает импульс от удара или блока, или ударная волна, распространяющаяся вглубь поражаемой поверхности.</p>
+
+        <p style="text-indent: 1em">Каратэ Shotokan используется многими школами каратэ, отдающими предпочтение соревнованиям и контактным спаррингам.</p>
+
+        <p style="text-indent: 1em">Shotokan – самый динамичный и зрелищный японский стиль каратэ и самый популярный. По данным WK стилем Shotokan занимаются примерно 80% всех каратэков.</p>
+
+        <p style="text-indent: 1em">В русском варианте его название произносится как Сетокан или Шотокан.</p>
+
+        <p style="text-indent: 1em">Стиль Shotokan практикуют:</p>
+
+        <h6 align='center'><b>Международные федерации категории А</b></h6>
+        
+        <ul style="list-style-type: none">
+        
+            <li>World Karate Federation (WKF)</li>
+
+            <li>Shotokan Karate-Do International Federation (S.K.I.F)</li>
+
+            <li>Japan Karate Association (JKA)</li>
+
+            <li>International Traditional Karate Federation (ITKF)</li>
+
+            <li>World Karate Confederation (WKC)</li>
+        
+        </ul>
+
+        <h6 align='center'><b>Международные федерации категории B</b></h6>
+        
+        <ul style="list-style-type: none">
+
+            <li>World Union of Karate-do Federations (WUKF)</li>
+
+            <li>World Union of Karate-do Organizations (WUKO)</li>
+
+            <li>Japan Shotokan Karate Association (JSKA)</li>
+
+            <li>World Shotokan Karate-do Federation (W.S.K.F)</li>
+
+            <li>World Shotokan Karate-do Association (WSKA)</li>
+        
+        </ul>
+
+        <span style="font-size: 12px;"><i>При подготовке использованы материалы Википедии, иностранные источники и собственная информация.</i></span>
+    
+    </div>  
+
+{% endblock %}

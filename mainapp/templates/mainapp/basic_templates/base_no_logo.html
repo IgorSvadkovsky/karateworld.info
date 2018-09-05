@@ -1,0 +1,119 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style_auth_comm.css' %}">
+    <link rel="icon" href="{% static 'images/index_1.jpg' %}"> {% block title %} {% endblock %} 
+    <link href="https://fonts.googleapis.com/css?family=El+Messiri:400,700&amp;subset=cyrillic" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Pattaya|Vollkorn|Kurale" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Merriweather" rel="stylesheet">
+    </head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg_dark" style="font: bold small-caps 17px El Messiri;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {% if request.resolver_match.url_name == 'main' or request.resolver_match.url_name == 'type' or request.resolver_match.url_name == 'id' or request.resolver_match.url_name == 'country' or request.resolver_match.url_name == 'show_all' or request.resolver_match.url_name == 'show_competitions' or request.resolver_match.url_name == 'show_sport_camps' or request.resolver_match.url_name == 'show_sport_science' or request.resolver_match.url_name == 'editor_id' or request.resolver_match.url_name == 'show_editor' or request.resolver_match.url_name == 'nonfiction' or request.resolver_match.url_name == 'show_nonfiction' %}active{% endif %}"> <a class="nav-link" href="{% url 'articles:main' %}">Главная <span class="sr-only">(current)</span></a> </li>
+                    <li class="nav-item dropdown {% if request.resolver_match.url_name == 'shotokan' or request.resolver_match.url_name == 'shito' or request.resolver_match.url_name == 'goju' or request.resolver_match.url_name == 'wado' %}active{% endif %}"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Стили</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown"> <a class="dropdown-item" href="{% url 'shotokan' %}">Сётокан</a> <a class="dropdown-item" href="{% url 'shito' %}">Сито Рю</a> <a class="dropdown-item" href="{% url 'goju' %}">Годжо Рю</a> <a class="dropdown-item" href="{% url 'wado' %}">Вадо Рю</a></div>
+                    </li>
+                    <li class="nav-item dropdown {% if request.resolver_match.url_name == 'photo' or request.resolver_match.url_name == 'photo_id' or request.resolver_match.url_name == 'video' or request.resolver_match.url_name == 'video_id' or request.resolver_match.url_name == 'show_photo' or request.resolver_match.url_name == 'show_video' %}active{% endif %}"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Галерея</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item" href="{% url 'articles:photo' %}">Фото</a><a class="dropdown-item" href="{% url 'articles:video' %}">Видео</a></div>
+                    </li>
+                    <!-- <li class="nav-item {% if request.resolver_match.url_name == 'editor_in_chief' or request.resolver_match.url_name == 'editor_id' or request.resolver_match.url_name == 'show_editors' %}active{% endif %}"> <a class="nav-link" href="">Главный редактор</a> </li> -->
+                    <li class="nav-item"> <a class="nav-link" href="http://www.karateworld.ru/" target="_blank">Старая версия сайта</a> </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="GET">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Поиск по сайту" aria-label="Search" name="q">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+                </form>
+            </div>
+        </nav>        
+        
+        <div class="content"> {% block content%} {% endblock %} </div>
+        
+        <div class="footer">
+   
+        <footer>
+            
+            <div class="social">
+
+                <div class="social_item">
+                   <a href="https://www.instagram.com/karateworld.info/" target="_blank"><img src="/static/images/insta_icon.png"/></a>
+                </div>
+
+                <div class="social_item">
+                   <a href="https://www.youtube.com/channel/UCewnNXzDEiimyOAbJfAOJWA" target="_blank"><img src="/static/images/youtube_icon.png"/></a>
+                </div>
+
+            </div>
+            
+            <a href="mailto:karateworld@karateworld.ru">karateworld@karateworld.ru</a>
+            
+            <div style="margin-top: 20px;">
+                <!--LiveInternet counter--><script type="text/javascript">
+                document.write("<a href='//www.liveinternet.ru/click' "+
+                "target=_blank><img src='//counter.yadro.ru/hit?t13.4;r"+
+                escape(document.referrer)+((typeof(screen)=="undefined")?"":
+                ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+                screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+                ";h"+escape(document.title.substring(0,150))+";"+Math.random()+
+                "' alt='' title='LiveInternet: показано число просмотров за 24"+
+                " часа, посетителей за 24 часа и за сегодня' "+
+                "border='0' width='88' height='31'><\/a>")
+                </script><!--/LiveInternet-->
+            </div>
+
+            <p style="font-size: 7pt; margin-top: 20px; padding-bottom: 20px;">developed by IgSvadkovsky</p>
+
+        </footer>
+    
+    </div>
+        
+    </div>
+    
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('.slideshow_button').click(function () {
+                $('#slideshow').css('display', 'block');
+            });
+            $('#slideshow .close').click(function () {
+                $('#slideshow').css('display', 'none');
+            });
+        })
+        
+        /*jQuery(function($) {
+	        $(window).scroll(function(){
+	            if($(this).scrollTop()==62){
+	                $('.navbar').addClass('fixed_hidden');
+	            }
+                else if ($(this).scrollTop()>63){
+                    $('.navbar').addClass('fixed_visible');
+	            }
+	            else if ($(this).scrollTop()<62){
+	                $('.navbar').removeClass('fixed_hidden');
+                    $('.navbar').removeClass('fixed_visible');
+	            }
+	        });
+	    });*/
+    </script>
+    
+</body>
+
+</html>
